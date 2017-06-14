@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.hongka.hkcommonlibrarysample.utils.StringUtils" />
+        <variable name="channel" type="com.hongka.hkcommonlibrary.retrofit.model.youtube.Channel" />
+        <variable name="presenter" type="com.hongka.hkcommonlibrarysample.youtube.YTMainActivity.Presenter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_1px_color_line_ddd_bg_f5f5f5"
+        android:onClick="@{(view) -> presenter.onClick(view, channel)}"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/channel_banner_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/dark_bg_grey"
+            android:transitionName="channel:banner:image"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{channel.brandingSettings.image.bannerMobileImageUrl}"
+            app:error="@{@drawable/android_error}"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="@android:color/white">
+
+            <ImageView
+                android:id="@+id/channel_profile_image_view"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/dark_bg_grey"
+                android:transitionName="channel:profile:image"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center_vertical"
+                app:imageUrl="@{channel.snippet.thumbnails.high.url}"
+                app:error="@{@drawable/android_error}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:text="@{channel.snippet.title}"
+                    android:textColor="@android:color/black"
+                    tools:text="양띵's YouTube"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:textSize="12sp"
+                    tools:text="@{@string/app_name}"
+                    android:text="@{StringUtils.getVideoCount(channel.statistics.videoCount)}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:textSize="12sp"
+                    android:text="@{StringUtils.getSubscriberCountAndViewCount(channel.statistics.subscriberCount, channel.statistics.viewCount)}"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

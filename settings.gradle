@@ -1,0 +1,7 @@
+include ':app'
+
+def hkCommonLibraryRelativeDir = new File('../HKCommonLibrary/hkcommonlibrary')
+if (hkCommonLibraryRelativeDir.exists()) {
+    include ':HKCommonLibrary'
+    project(':HKCommonLibrary').projectDir = hkCommonLibraryRelativeDir
+}

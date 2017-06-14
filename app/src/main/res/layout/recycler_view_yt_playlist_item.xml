@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.text.TextUtils" />
+        <variable name="playlist" type="com.hongka.hkcommonlibrary.retrofit.model.youtube.Playlist" />
+        <variable name="presenter" type="com.hongka.hkcommonlibrarysample.youtube.YTPlaylistListFragment.Presenter" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/border_1px_color_line_ddd_bg_f5f5f5"
+        android:onClick="@{(view) -> presenter.onClick(view, playlist)}"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/playlist_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/dark_bg_grey"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{TextUtils.isEmpty(playlist.snippet.thumbnails.maxres.url) ? playlist.snippet.thumbnails.high.url : playlist.snippet.thumbnails.maxres.url}"
+            app:error="@{@drawable/android_error}"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_bg"/>
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:paddingBottom="30dp"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            tools:text="200"
+            android:text='@{playlist.contentDetails.itemCount + ""}'/>
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="@{playlist.snippet.title}"
+                android:textColor="@android:color/white"
+                android:lines="2"
+                android:ellipsize="end"
+                tools:text="[Minecraft] 새싹학교 VS 올드학교, 두 학교의 급식대결! '급식전쟁' / 부엉이클럽 제작"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

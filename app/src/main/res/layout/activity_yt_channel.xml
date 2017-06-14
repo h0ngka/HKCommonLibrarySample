@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="channel" type="com.hongka.hkcommonlibrary.retrofit.model.youtube.Channel" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_scrollFlags="scroll|enterAlways">
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="?attr/colorPrimary"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/channel_banner_image_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:background="@color/dark_bg_grey"
+                                android:transitionName="channel:banner:image"
+                                android:scaleType="centerCrop"
+                                app:imageUrl="@{channel.brandingSettings.image.bannerMobileImageUrl}"
+                                app:error="@{@drawable/android_error}"/>
+
+                            <ImageView
+                                android:id="@+id/channel_profile_image_view"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@color/dark_bg_grey"
+                                android:transitionName="channel:profile:image"
+                                android:scaleType="centerCrop"
+                                android:layout_margin="10dp"
+                                android:layout_alignParentRight="true"
+                                app:imageUrl="@{channel.snippet.thumbnails.high.url}"
+                                app:error="@{@drawable/android_error}" />
+
+                        </RelativeLayout>
+
+                </LinearLayout>
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </android.support.design.widget.CoordinatorLayout>
+
+    </LinearLayout>
+
+</layout>

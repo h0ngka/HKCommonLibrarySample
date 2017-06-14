@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="videoId" type="String" />
+        <variable name="snippet" type="com.hongka.hkcommonlibrary.retrofit.model.youtube.Snippet"/>
+        <variable name="presenter" type="com.hongka.hkcommonlibrarysample.youtube.YTVideoListFragment.Presenter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        android:background="@drawable/border_1px_color_line_ddd_bg_f5f5f5"
+        android:onClick="@{(view) -> presenter.onClick(view, videoId, snippet)}">
+
+        <ImageView
+            android:layout_width="143.5dp"
+            android:layout_height="80dp"
+            android:layout_margin="5dp"
+            android:background="@color/dark_bg_grey"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{snippet.thumbnails.high.url}"
+            app:error="@{@drawable/android_error}"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            tools:text="가나다라마바사아차카타파하가나다라마바사아차카타파하가나다라마ㅏㅂ사"
+            android:lines="2"
+            android:ellipsize="end"
+            android:text="@{snippet.title}"/>
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion shared.compileSdkVersion
+    buildToolsVersion shared.buildToolVersion
+
+    defaultConfig {
+        applicationId "com.hongka.hkcommonlibrarysample"
+        minSdkVersion shared.minSdkVersion
+        targetSdkVersion shared.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+def hkCommonLibraryRelativeDir = new File('../HKCommonLibrary/hkcommonlibrary')
+
+dependencies {
+    compileDefault project
+    compile 'com.android.support:support-v4'
+    compile 'com.android.support:design'
+    compile 'com.android.support:recyclerview-v7'
+    compile 'com.github.bumptech.glide:glide'
+    compile hkCommonLibraryRelativeDir.exists() ? project(':HKCommonLibrary') : 'com.github.h0ngka:HKCommonLibrary'
+    compile 'com.google.android.exoplayer:exoplayer'
+    compile 'com.github.feeeei:CircleSeekbar'
+    compile 'com.github.HaarigerHarald:android-youtubeExtractor'
+}
