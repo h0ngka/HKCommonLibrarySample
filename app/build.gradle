@@ -30,6 +30,7 @@ repositories {
 
 def hkCommonLibraryRelativeDir = new File('../HKCommonLibrary/hkcommonlibrary')
 
+
 dependencies {
     compileDefault project
     compile 'com.android.support:support-v4'
