@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
@@ -19,6 +21,7 @@ import com.hongka.hkcommonlibrary.retrofit.RestClient;
 import com.hongka.hkcommonlibrary.retrofit.api.YouTubeApi;
 import com.hongka.hkcommonlibrary.retrofit.model.youtube.Channel;
 import com.hongka.hkcommonlibrary.retrofit.model.youtube.ChannelsResponse;
+import com.hongka.hkcommonlibrarysample.api.YTApiService;
 import com.hongka.hkcommonlibrarysample.R;
 import com.hongka.hkcommonlibrarysample.common.Constants;
 import com.hongka.hkcommonlibrarysample.databinding.ActivityYtMainBinding;
@@ -30,13 +33,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.hongka.hkcommonlibrarysample.api.YTApiService.KEY_RESULT_DATA;
+
 public class YTMainActivity extends AppCompatActivity {
-    private ActivityYtMainBinding mBinding;
 
     public static Intent makeIntent(Context context) {
         Intent intent = new Intent(context, YTMainActivity.class);
         return intent;
     }
+
+    private ActivityYtMainBinding mBinding;
+    private ResultReceiver mResultReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +55,21 @@ public class YTMainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.title_activity_channels);
 
-        requestChannelsData("UCdet8uJfTFlACtY05BQmJ1Q,UCDHIA4d_e4SOrODpU7nrVtA,UCx8IhwapX8E7uooFYJIeVZw,UCN106RQxroojNzkEMuRC0BA,UCUEbQMiMQbn5gOIe9ljEcWw,UC0SVqB_1E2Kgh3cx3Y8xtfA,UC1WEOQjm8tyT1pXY6xaoYZQ");
+        mResultReceiver = new ResultReceiver(new Handler()) {
+            @Override
+            protected void onReceiveResult(int resultCode, Bundle resultData) {
+                super.onReceiveResult(resultCode, resultData);
+                if (resultCode == RESULT_OK) {
+                    ChannelsResponse channelsResponse = (ChannelsResponse) resultData.getSerializable(KEY_RESULT_DATA);
+                    List<Channel> items = channelsResponse.items;
+                    mBinding.recyclerView.setAdapter(new RecyclerViewAdapter(items));
+                }
+            }
+        };
+
+        String channelIds = "UCdet8uJfTFlACtY05BQmJ1Q,UCDHIA4d_e4SOrODpU7nrVtA,UCx8IhwapX8E7uooFYJIeVZw,UCN106RQxroojNzkEMuRC0BA,UCUEbQMiMQbn5gOIe9ljEcWw,UC0SVqB_1E2Kgh3cx3Y8xtfA,UC1WEOQjm8tyT1pXY6xaoYZQ";
+        startService(YTApiService.makeIntentByChannelInfoList(this, mResultReceiver, channelIds));
+//        requestChannelsData(channelIds);
     }
 
     @Override
@@ -62,9 +83,8 @@ public class YTMainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void requestChannelsData(String channelId) {
-        Call<ChannelsResponse> call = RestClient.getInstance(YouTubeApi.DOMAIN).getApi(YouTubeApi.class)
-                .getChannels(Constants.YOUTUBE_API_KEY, channelId);
+    private void requestChannelsData(String channelIds) {
+        Call<ChannelsResponse> call = RestClient.getInstance(YouTubeApi.DOMAIN).getApi(YouTubeApi.class).getChannels(Constants.YOUTUBE_API_KEY, channelIds);
         call.enqueue(new Callback<ChannelsResponse>() {
             @Override
             public void onResponse(Call<ChannelsResponse> call, Response<ChannelsResponse> response) {
