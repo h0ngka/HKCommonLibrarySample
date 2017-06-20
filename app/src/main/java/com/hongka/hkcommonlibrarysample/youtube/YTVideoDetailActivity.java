@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -18,12 +20,15 @@ import com.hongka.hkcommonlibrary.retrofit.model.youtube.Video;
 import com.hongka.hkcommonlibrary.retrofit.model.youtube.VideosResponse;
 import com.hongka.hkcommonlibrary.utils.DensityScaleUtil;
 import com.hongka.hkcommonlibrarysample.R;
+import com.hongka.hkcommonlibrarysample.api.YTApiService;
 import com.hongka.hkcommonlibrarysample.common.Constants;
 import com.hongka.hkcommonlibrarysample.databinding.ActivityYtVideoDetailBinding;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.hongka.hkcommonlibrarysample.api.YTApiService.KEY_RESULT_DATA;
 
 /**
  * Created by jusung.kim@sk.com on 2017/05/25
@@ -61,7 +66,25 @@ public class YTVideoDetailActivity extends YouTubeBaseActivity {
         int height = (width * 101) / 180;
         mBinding.youtubeView.setLayoutParams(new LinearLayout.LayoutParams(width, height));
 
-        requestVideosData(mVideoId);
+        ResultReceiver resultReceiver = new ResultReceiver(new Handler()) {
+            @Override
+            protected void onReceiveResult(int resultCode, Bundle resultData) {
+                super.onReceiveResult(resultCode, resultData);
+                if (resultCode == RESULT_OK) {
+                    VideosResponse videosResponse = resultData.getParcelable(KEY_RESULT_DATA);
+                    StringBuilder sb = new StringBuilder();
+                    for (Video item : videosResponse.items) {
+                        sb.append("[ 제목 ]\n").append(item.snippet.title).append("\n\n");
+                        sb.append("[ 게시일 ]\n").append(item.snippet.publishedAt).append("\n\n");
+                        sb.append("[ 설명 ]\n").append(item.snippet.description).append("\n\n");
+                    }
+
+                    mBinding.contentTextView.setText(sb.toString());
+                }
+            }
+        };
+        startService(YTApiService.makeIntentForVideos(this, resultReceiver, mVideoId));
+//        requestVideosData(mVideoId);
     }
 
     @Override

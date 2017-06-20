@@ -118,12 +118,22 @@ public class YTChannelActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    YTVideoListFragment ytVideoListFragment = YTVideoListFragment.newInstance();
-                    ytVideoListFragment.requestLatestVideo(mChannel.id, "");
+                    final YTVideoListFragment ytVideoListFragment = YTVideoListFragment.newInstance();
+                    mBinding.getRoot().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            ytVideoListFragment.requestLatestVideo(mChannel.id, "");
+                        }
+                    }, 200);
                     return ytVideoListFragment;
                 case 1:
-                    YTPlaylistListFragment ytPlaylistListFragment = YTPlaylistListFragment.newInstance();
-                    ytPlaylistListFragment.requestPlaylistsData(mChannel.id, "");
+                    final YTPlaylistListFragment ytPlaylistListFragment = YTPlaylistListFragment.newInstance();
+                    mBinding.getRoot().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            ytPlaylistListFragment.requestPlaylistsData(mChannel.id, "");
+                        }
+                    }, 200);
                     return ytPlaylistListFragment;
             }
 

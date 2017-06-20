@@ -2,6 +2,8 @@ package com.hongka.hkcommonlibrarysample.youtube;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -12,8 +14,10 @@ import android.view.ViewGroup;
 import com.hongka.hkcommonlibrary.retrofit.RestClient;
 import com.hongka.hkcommonlibrary.retrofit.api.YouTubeApi;
 import com.hongka.hkcommonlibrary.retrofit.model.youtube.Playlist;
+import com.hongka.hkcommonlibrary.retrofit.model.youtube.PlaylistItemsResponse;
 import com.hongka.hkcommonlibrary.retrofit.model.youtube.PlaylistsResponse;
 import com.hongka.hkcommonlibrarysample.R;
+import com.hongka.hkcommonlibrarysample.api.YTApiService;
 import com.hongka.hkcommonlibrarysample.common.Constants;
 import com.hongka.hkcommonlibrarysample.databinding.FragmentPlaylistListBinding;
 import com.hongka.hkcommonlibrarysample.databinding.RecyclerViewYtPlaylistItemBinding;
@@ -24,12 +28,31 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
+import static com.hongka.hkcommonlibrarysample.api.YTApiService.KEY_API;
+import static com.hongka.hkcommonlibrarysample.api.YTApiService.KEY_RESULT_DATA;
+
 /**
  * Created by jusung.kim@sk.com on 2017/05/24
  */
 
 public class YTPlaylistListFragment extends Fragment {
     private FragmentPlaylistListBinding mBinding;
+
+    private ResultReceiver mResultReceiver = new ResultReceiver(new Handler()) {
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
+            if (resultCode == RESULT_OK) {
+                YTApiService.API api = (YTApiService.API) resultData.getSerializable(KEY_API);
+                if (api == YTApiService.API.PLAYLISTS) {
+                    PlaylistsResponse playlistsResponse = resultData.getParcelable(KEY_RESULT_DATA);
+                    List<Playlist> items = playlistsResponse.items;
+                    mBinding.recyclerView.setAdapter(new RecyclerViewAdapter(items));
+                }
+            }
+        }
+    };
 
     public static YTPlaylistListFragment newInstance() {
         YTPlaylistListFragment fragment = new YTPlaylistListFragment();
@@ -48,26 +71,28 @@ public class YTPlaylistListFragment extends Fragment {
     }
 
     public void requestPlaylistsData(String channelId, String pageToken) {
-        if (TextUtils.isEmpty(pageToken)) {
-            pageToken = "";
-        }
+        getActivity().startService(YTApiService.makeIntentForPlaylists(getActivity(), mResultReceiver, channelId, pageToken));
 
-        Call<PlaylistsResponse> call = RestClient.getInstance(YouTubeApi.DOMAIN).getApi(YouTubeApi.class)
-                .getPlaylists(Constants.YOUTUBE_API_KEY, channelId, pageToken, 50);
-        call.enqueue(new Callback<PlaylistsResponse>() {
-            @Override
-            public void onResponse(Call<PlaylistsResponse> call, Response<PlaylistsResponse> response) {
-                if (response.isSuccessful()) {
-                    List<Playlist> items = response.body().items;
-                    mBinding.recyclerView.setAdapter(new RecyclerViewAdapter(items));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<PlaylistsResponse> call, Throwable t) {
-
-            }
-        });
+//        if (TextUtils.isEmpty(pageToken)) {
+//            pageToken = "";
+//        }
+//
+//        Call<PlaylistsResponse> call = RestClient.getInstance(YouTubeApi.DOMAIN).getApi(YouTubeApi.class)
+//                .getPlaylists(Constants.YOUTUBE_API_KEY, channelId, pageToken, 50);
+//        call.enqueue(new Callback<PlaylistsResponse>() {
+//            @Override
+//            public void onResponse(Call<PlaylistsResponse> call, Response<PlaylistsResponse> response) {
+//                if (response.isSuccessful()) {
+//                    List<Playlist> items = response.body().items;
+//                    mBinding.recyclerView.setAdapter(new RecyclerViewAdapter(items));
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<PlaylistsResponse> call, Throwable t) {
+//
+//            }
+//        });
     }
 
     public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.BindingHolder> {

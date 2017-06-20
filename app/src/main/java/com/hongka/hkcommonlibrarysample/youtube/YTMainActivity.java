@@ -21,8 +21,8 @@ import com.hongka.hkcommonlibrary.retrofit.RestClient;
 import com.hongka.hkcommonlibrary.retrofit.api.YouTubeApi;
 import com.hongka.hkcommonlibrary.retrofit.model.youtube.Channel;
 import com.hongka.hkcommonlibrary.retrofit.model.youtube.ChannelsResponse;
-import com.hongka.hkcommonlibrarysample.api.YTApiService;
 import com.hongka.hkcommonlibrarysample.R;
+import com.hongka.hkcommonlibrarysample.api.YTApiService;
 import com.hongka.hkcommonlibrarysample.common.Constants;
 import com.hongka.hkcommonlibrarysample.databinding.ActivityYtMainBinding;
 import com.hongka.hkcommonlibrarysample.databinding.RecyclerViewYtMainItemBinding;
@@ -43,7 +43,6 @@ public class YTMainActivity extends AppCompatActivity {
     }
 
     private ActivityYtMainBinding mBinding;
-    private ResultReceiver mResultReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +54,12 @@ public class YTMainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.title_activity_channels);
 
-        mResultReceiver = new ResultReceiver(new Handler()) {
+        ResultReceiver resultReceiver = new ResultReceiver(new Handler()) {
             @Override
             protected void onReceiveResult(int resultCode, Bundle resultData) {
                 super.onReceiveResult(resultCode, resultData);
                 if (resultCode == RESULT_OK) {
-                    ChannelsResponse channelsResponse = (ChannelsResponse) resultData.getSerializable(KEY_RESULT_DATA);
+                    ChannelsResponse channelsResponse = resultData.getParcelable(KEY_RESULT_DATA);
                     List<Channel> items = channelsResponse.items;
                     mBinding.recyclerView.setAdapter(new RecyclerViewAdapter(items));
                 }
@@ -68,7 +67,7 @@ public class YTMainActivity extends AppCompatActivity {
         };
 
         String channelIds = "UCdet8uJfTFlACtY05BQmJ1Q,UCDHIA4d_e4SOrODpU7nrVtA,UCx8IhwapX8E7uooFYJIeVZw,UCN106RQxroojNzkEMuRC0BA,UCUEbQMiMQbn5gOIe9ljEcWw,UC0SVqB_1E2Kgh3cx3Y8xtfA,UC1WEOQjm8tyT1pXY6xaoYZQ";
-        startService(YTApiService.makeIntentByChannelInfoList(this, mResultReceiver, channelIds));
+        startService(YTApiService.makeIntentForChannelInfoList(this, resultReceiver, channelIds));
 //        requestChannelsData(channelIds);
     }
 

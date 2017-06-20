@@ -31,10 +31,16 @@ public class YTVideoListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_yt_video_list);
 
-        String playlistId = getIntent().getStringExtra("playlist_id");
-        YTVideoListFragment ytVideoListFragment = YTVideoListFragment.newInstance();
-        ytVideoListFragment.requestPlaylistItems(playlistId, "");
+        final String playlistId = getIntent().getStringExtra("playlist_id");
+        final YTVideoListFragment ytVideoListFragment = YTVideoListFragment.newInstance();
         replaceFragment(ytVideoListFragment);
+
+        mBinding.getRoot().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ytVideoListFragment.requestPlaylistItems(playlistId, "");
+            }
+        }, 200);
     }
 
     public void replaceFragment(Fragment fragment) {
