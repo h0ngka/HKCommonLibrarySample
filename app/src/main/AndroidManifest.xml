@@ -93,6 +93,16 @@
             android:name=".api.YTApiService"
             android:exported="false"/>
 
+        <activity
+            android:name=".ipc.IpcTestActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <service
+            android:name=".ipc.WorkerThreadService"
+            android:process=":hongka"
+            android:enabled="true"
+            android:exported="true"/>
 
     </application>
 

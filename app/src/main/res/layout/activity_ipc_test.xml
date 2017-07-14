@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="presenter" type="com.hongka.hkcommonlibrarysample.ipc.IpcTestActivity.Presenter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:text="바인드"
+            android:onClick="@{(view) -> presenter.onBindClick(view)}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:text="언바인드"
+            android:onClick="@{(view) -> presenter.onUnBindClick(view)}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:text="전송"
+            android:onClick="@{(view) -> presenter.onSendClick(view)}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:text="양방향 전송"
+            android:onClick="@{(view) -> presenter.onSendClickTwoWay(view)}"/>
+
+    </LinearLayout>
+
+</layout>

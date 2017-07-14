@@ -1,23 +1,16 @@
 package com.hongka.hkcommonlibrarysample;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.ConnectivityManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.os.ResultReceiver;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.hongka.hkcommonlibrary.exoplayer2.PlayerActivity;
-import com.hongka.hkcommonlibrary.utils.NetworkUtil;
-import com.hongka.hkcommonlibrary.utils.YouTubeLink;
+import com.hongka.hkcommonlibrarysample.ipc.IpcTestActivity;
 import com.hongka.hkcommonlibrarysample.databinding.ActivityMainBinding;
 import com.hongka.hkcommonlibrarysample.databinding.RecyclerViewMainItemBinding;
 import com.hongka.hkcommonlibrarysample.exoplayer.ExoMainActivity;
@@ -27,10 +20,6 @@ import com.hongka.hkcommonlibrarysample.youtube.YTMainActivity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import at.huber.youtubeExtractor.VideoMeta;
-import at.huber.youtubeExtractor.YouTubeExtractor;
-import at.huber.youtubeExtractor.YtFile;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = MainActivity.class.getSimpleName();
@@ -69,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
         item5.mTitle.set("ExoPlayer Playlist");
         item5.mThumbnailUrl.set("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLdCA2S0wvPnd9SOS5kRSvnVaRnbWnsSKfAuU9donLAPWuASSyfw");
         mainItemList.add(item5);
+
+        MainItem item6 = new MainItem();
+        item6.mTitle.set("IPC Test");
+        item6.mThumbnailUrl.set("https://image.mycelebs.com/celeb/sq/526_sq_01.jpg");
+        mainItemList.add(item6);
 
         return mainItemList;
     }
@@ -135,6 +129,9 @@ public class MainActivity extends AppCompatActivity {
                         "https://www.youtube.com/watch?v=GH5K8WBy2qY"
                 };
                 startActivity(PlayerActivity.makeIntent(view.getContext(), playUrls));
+            }
+            else if (mainItem.mTitle.get().contains("IPC")) {
+                startActivity(IpcTestActivity.makeIntent(view.getContext()));
             }
         }
 

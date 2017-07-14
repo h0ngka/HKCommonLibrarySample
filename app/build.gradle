@@ -51,4 +51,43 @@ dependencies {
     compile 'com.google.android.exoplayer:exoplayer'
     compile 'com.github.feeeei:CircleSeekbar'
     compile 'com.github.HaarigerHarald:android-youtubeExtractor'
+
+    // For Lifecycles, LiveData, and ViewModel
+    compile "android.arch.lifecycle:runtime:1.0.0-alpha3"
+    compile "android.arch.lifecycle:extensions:1.0.0-alpha3"
+    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha3"
+}
+
+// Task Coding Test
+task sayHello << {
+    println "Hello Gradle!"
+}
+
+def greetings = "greetings";
+task sayHelloGroup(group:greetings) << {
+    println "greetings -> Hello Gradle!"
+}
+
+// commond line에서 tasks 명령어를 치며 description 내용을 확인 할수 있다.
+task sayHelloGroupDescriptions(group:greetings, description:"my greetings is hello") << {
+    println "greetings -> Hello Gradle!"
+}
+
+// 어떤 task를 내 task보다 먼저 실행해야 한다면 'dependsOn'이라는 속성으로 지정합니다.
+task sayHelloGroupDescriptionsDependsOn(group:greetings,
+        description:"my greetings is hello",
+        dependsOn:"meetingPeople") {
+//    println "greetings -> Hello Gradle!"
+
+    doFirst {
+        println "Look at me"
+    }
+
+    doLast {
+        println "Hello Gradle"
+    }
+}
+
+task meetingPeople(group: greetings) << {
+    println "I met some people"
 }
