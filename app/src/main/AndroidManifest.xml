@@ -104,6 +104,11 @@
             android:enabled="true"
             android:exported="true"/>
 
+        <activity
+            android:name=".navigation.NavigationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>

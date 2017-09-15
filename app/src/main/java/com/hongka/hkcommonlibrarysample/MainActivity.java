@@ -1,5 +1,7 @@
 package com.hongka.hkcommonlibrarysample;
 
+import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,11 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.hongka.hkcommonlibrary.exoplayer2.PlayerActivity;
-import com.hongka.hkcommonlibrarysample.ipc.IpcTestActivity;
 import com.hongka.hkcommonlibrarysample.databinding.ActivityMainBinding;
 import com.hongka.hkcommonlibrarysample.databinding.RecyclerViewMainItemBinding;
 import com.hongka.hkcommonlibrarysample.exoplayer.ExoMainActivity;
+import com.hongka.hkcommonlibrarysample.ipc.IpcTestActivity;
 import com.hongka.hkcommonlibrarysample.model.MainItem;
+import com.hongka.hkcommonlibrarysample.navigation.NavigationActivity;
 import com.hongka.hkcommonlibrarysample.youtube.YTMainActivity;
 
 import java.util.ArrayList;
@@ -23,6 +26,11 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = MainActivity.class.getSimpleName();
+
+    public static Intent makeIntent(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +68,14 @@ public class MainActivity extends AppCompatActivity {
         mainItemList.add(item5);
 
         MainItem item6 = new MainItem();
-        item6.mTitle.set("IPC Test");
+        item6.mTitle.set(getString(R.string.title_ipc_test));
         item6.mThumbnailUrl.set("https://image.mycelebs.com/celeb/sq/526_sq_01.jpg");
         mainItemList.add(item6);
+
+        MainItem item7 = new MainItem();
+        item7.mTitle.set("Navigation");
+        item7.mThumbnailUrl.set("https://pbs.twimg.com/media/C27uyBGUAAAdw4C.jpg");
+        mainItemList.add(item7);
 
         return mainItemList;
     }
@@ -115,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(ExoMainActivity.makeIntent(view.getContext(), mainItem.mTitle.get()));
             }
             else if (mainItem.mTitle.get().contains("ExoPlayer 일반")) {
-                String url = "https://static-img.hiddenx.co.kr/v/r/20170530/2e41_4ff97affe51c4e868eb91d3fcf072f79_480.mp4";
+                String url = "http://www.gs.co.kr/sites/default/files/GS%EA%B7%B8%EB%A3%B9PR%20%EB%B0%91%EA%B1%B0%EB%A6%84%ED%8E%B8%2830%EC%B4%88%29.mp4";
                 startActivity(PlayerActivity.makeIntent(view.getContext(), url));
             }
             else if (mainItem.mTitle.get().contains("ExoPlayer YouTube")) {
@@ -124,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else if (mainItem.mTitle.get().contains("ExoPlayer Playlist")) {
                 String[] playUrls = new String[] {
-                        "https://static-img.hiddenx.co.kr/v/r/20170530/2e41_4ff97affe51c4e868eb91d3fcf072f79_480.mp4",
+                        "http://www.gs.co.kr/sites/default/files/GS%EA%B7%B8%EB%A3%B9PR%20%EB%B0%91%EA%B1%B0%EB%A6%84%ED%8E%B8%2830%EC%B4%88%29.mp4",
                         "http://youtube.com/watch?v=NpBN0YeRMZw",
                         "https://www.youtube.com/watch?v=GH5K8WBy2qY"
                 };
@@ -132,6 +145,9 @@ public class MainActivity extends AppCompatActivity {
             }
             else if (mainItem.mTitle.get().contains("IPC")) {
                 startActivity(IpcTestActivity.makeIntent(view.getContext()));
+            }
+            else if (mainItem.mTitle.get().contains("Navigation")) {
+                startActivity(NavigationActivity.makeIntent(view.getContext()));
             }
         }
 

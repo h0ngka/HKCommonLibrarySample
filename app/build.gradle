@@ -51,6 +51,7 @@ dependencies {
     compile 'com.google.android.exoplayer:exoplayer'
     compile 'com.github.feeeei:CircleSeekbar'
     compile 'com.github.HaarigerHarald:android-youtubeExtractor'
+    compile "com.google.guava:guava:18.0"
 
     // For Lifecycles, LiveData, and ViewModel
     compile "android.arch.lifecycle:runtime:1.0.0-alpha3"

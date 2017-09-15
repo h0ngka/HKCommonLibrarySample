@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="viewModel" type="com.hongka.hkcommonlibrarysample.navigation.NavigationViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            tools:text="Test"
+            android:text='@{viewModel.mTitle ?? "값이 없어요"}'
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:background="@color/alpha_half_black_color"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:text="Standard"
+            android:textAllCaps="false"
+            android:onClick="@{(view) -> viewModel.onStandardClick(view)}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:text="SingleTop"
+            android:textAllCaps="false"
+            android:onClick="@{(view) -> viewModel.onSingleTopClick(view)}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:text="ClearTop"
+            android:textAllCaps="false"
+            android:onClick="@{(view) -> viewModel.onClearTopClick(view)}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:text="ClearTopAndSingleTop"
+            android:textAllCaps="false"
+            android:onClick="@{(view) -> viewModel.onClearTopAndSingleTopClick(view)}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:text="ReorderToFront"
+            android:textAllCaps="false"
+            android:onClick="@{(view) -> viewModel.onReorderToFrontClick(view)}"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:text="NoHistory"
+            android:textAllCaps="false"
+            android:onClick="@{(view) -> viewModel.onNoHistoryClick(view)}"/>
+
+    </LinearLayout>
+
+</layout>

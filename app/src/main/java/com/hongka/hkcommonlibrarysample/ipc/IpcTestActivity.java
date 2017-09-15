@@ -14,6 +14,7 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import com.hongka.hkcommonlibrarysample.databinding.ActivityIpcTestBinding;
  */
 
 public class IpcTestActivity extends AppCompatActivity {
+
     public static Intent makeIntent(Context context) {
         Intent intent = new Intent(context, IpcTestActivity.class);
         return intent;
@@ -51,7 +53,24 @@ public class IpcTestActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityIpcTestBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_ipc_test);
+
+        setSupportActionBar(binding.toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.title_ipc_test);
+
         binding.setPresenter(new Presenter());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home :
+                finish();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public class Presenter {
