@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             tools:text="Test"
-            android:text='@{viewModel.mTitle ?? "값이 없어요"}'
+            android:text='@{viewModel.mNavigationItem.mTitle ?? "값이 없어요"}'
             android:textColor="#ffffff"
             android:gravity="center"
             android:background="@color/alpha_half_black_color"/>
