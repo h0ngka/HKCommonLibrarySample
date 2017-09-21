@@ -69,8 +69,8 @@ public class NavigationActivity extends AppCompatActivity {
         return navigationFragment;
     }
 
-    @SuppressWarnings("unchecked")
     private NavigationViewModel findOrCreateViewModel(Context context) {
+        @SuppressWarnings("unchecked")
         ViewModelHolder<NavigationViewModel> retainedViewModel =
                 (ViewModelHolder<NavigationViewModel>) getSupportFragmentManager().findFragmentByTag(NAVIGATION_VIEWMODEL_TAG);
 

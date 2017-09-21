@@ -2,6 +2,7 @@ package com.hongka.hkcommonlibrarysample;
 
 import android.content.Context;
 import android.databinding.BaseObservable;
+import android.databinding.ObservableArrayList;
 import android.view.View;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.hongka.hkcommonlibrarysample.navigation.NavigationActivity;
 import com.hongka.hkcommonlibrarysample.youtube.YTMainActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -21,55 +23,52 @@ import java.util.Random;
 
 public class MainViewModel extends BaseObservable {
     private Context mContext;
-    public ArrayList<MainItem> mMainItems;
+    public ObservableArrayList<MainItem> mMainItems = new ObservableArrayList<>();
 
     public MainViewModel(Context context) {
         mContext = context;
     }
 
     public void loadData() {
-        if (mMainItems == null) {
-            mMainItems = new ArrayList<>();
-        }
-
-        if (mMainItems != null && mMainItems.size() > 0) {
-            mMainItems.clear();
-        }
+        List<MainItem> mainItems = new ArrayList<>();
 
         MainItem item1 = new MainItem();
         item1.mTitle.set("YouTube 키즈 채널");
         item1.mThumbnailUrl.set("https://lh5.ggpht.com/ZPd1wApboW20pq7XINmvDQ8lsXoNAJ3L-Fpr6eCufIf54Cpv6SZC5HtMgd-yf2FjnEg=w300");
-        mMainItems.add(item1);
+        mainItems.add(item1);
 
         MainItem item2 = new MainItem();
         item2.mTitle.set("ExoPlayer 샘플 목록");
         item2.mThumbnailUrl.set("https://dn-mhke0kuv.qbox.me/dfeba581a1088ef86add.jpg?imageView2/1/w/800/h/600/q/85/format/jpg/interlace/1");
-        mMainItems.add(item2);
+        mainItems.add(item2);
 
         MainItem item3 = new MainItem();
         item3.mTitle.set("ExoPlayer 일반");
         item3.mThumbnailUrl.set("https://www.thebitbag.com/wp-content/uploads/2015/01/Activate-ExoPlayer-to-load-YouTube-videos-faster-on-your-Android-device.jpg");
-        mMainItems.add(item3);
+        mainItems.add(item3);
 
         MainItem item4 = new MainItem();
         item4.mTitle.set("ExoPlayer YouTube");
         item4.mThumbnailUrl.set("http://pinkwiki.cf/images/f/fc/Naeun.png");
-        mMainItems.add(item4);
+        mainItems.add(item4);
 
         MainItem item5 = new MainItem();
         item5.mTitle.set("ExoPlayer Playlist");
         item5.mThumbnailUrl.set("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLdCA2S0wvPnd9SOS5kRSvnVaRnbWnsSKfAuU9donLAPWuASSyfw");
-        mMainItems.add(item5);
+        mainItems.add(item5);
 
         MainItem item6 = new MainItem();
         item6.mTitle.set(mContext.getString(R.string.title_ipc_test));
         item6.mThumbnailUrl.set("https://image.mycelebs.com/celeb/sq/526_sq_01.jpg");
-        mMainItems.add(item6);
+        mainItems.add(item6);
 
         MainItem item7 = new MainItem();
         item7.mTitle.set("Navigation");
         item7.mThumbnailUrl.set("https://pbs.twimg.com/media/C27uyBGUAAAdw4C.jpg");
-        mMainItems.add(item7);
+        mainItems.add(item7);
+
+        mMainItems.clear();
+        mMainItems.addAll(mainItems);
     }
 
     public void onClick(View view, MainItem mainItem) {
