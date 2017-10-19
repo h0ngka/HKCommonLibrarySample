@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hongka.hkcommonlibrarysample.navigation;
+package com.hongka.hkcommonlibrarysample.common;
 
 
 import android.os.Bundle;

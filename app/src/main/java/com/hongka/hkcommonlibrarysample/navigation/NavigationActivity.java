@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.hongka.hkcommonlibrarysample.R;
+import com.hongka.hkcommonlibrarysample.common.ViewModelHolder;
 import com.hongka.hkcommonlibrarysample.databinding.ActivityNavigationBinding;
 import com.hongka.hkcommonlibrarysample.utils.ActivityUtils;
 

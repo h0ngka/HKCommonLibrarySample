@@ -8,14 +8,12 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
 import com.hongka.hkcommonlibrarysample.databinding.ActivityMainBinding;
-import com.hongka.hkcommonlibrarysample.navigation.ViewModelHolder;
+import com.hongka.hkcommonlibrarysample.common.ViewModelHolder;
 import com.hongka.hkcommonlibrarysample.utils.ActivityUtils;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final static String TAG = MainActivity.class.getSimpleName();
     private final static String MAIN_VIEWMODEL_TAG = "MAIN_VIEWMODEL_TAG";
-
     private MainViewModel mViewModel;
 
     public static Intent makeIntent(Context context) {

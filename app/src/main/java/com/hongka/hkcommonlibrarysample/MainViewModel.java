@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.hongka.hkcommonlibrary.exoplayer2.PlayerActivity;
 import com.hongka.hkcommonlibrarysample.exoplayer.ExoMainActivity;
+import com.hongka.hkcommonlibrarysample.fragment.FragmentMainActivity;
 import com.hongka.hkcommonlibrarysample.ipc.IpcTestActivity;
 import com.hongka.hkcommonlibrarysample.model.MainItem;
 import com.hongka.hkcommonlibrarysample.navigation.NavigationActivity;
@@ -49,7 +50,7 @@ public class MainViewModel extends BaseObservable {
 
         MainItem item4 = new MainItem();
         item4.mTitle.set("ExoPlayer YouTube");
-        item4.mThumbnailUrl.set("http://pinkwiki.cf/images/f/fc/Naeun.png");
+        item4.mThumbnailUrl.set("https://cdn.gamemeca.com/gmdata/0000/122/651/091130_preview_zelda_sh_1.jpg");
         mainItems.add(item4);
 
         MainItem item5 = new MainItem();
@@ -66,6 +67,11 @@ public class MainViewModel extends BaseObservable {
         item7.mTitle.set("Navigation");
         item7.mThumbnailUrl.set("https://pbs.twimg.com/media/C27uyBGUAAAdw4C.jpg");
         mainItems.add(item7);
+
+        MainItem item8 = new MainItem();
+        item8.mTitle.set(mContext.getString(R.string.title_fragment_test));
+        item8.mThumbnailUrl.set("http://res.thegear.co.kr/images/20161021/20161021082835850311.jpg");
+        mainItems.add(item8);
 
         mMainItems.clear();
         mMainItems.addAll(mainItems);
@@ -99,6 +105,9 @@ public class MainViewModel extends BaseObservable {
         }
         else if (mainItem.mTitle.get().contains("Navigation")) {
             view.getContext().startActivity(NavigationActivity.makeIntent(view.getContext()));
+        }
+        else if (mainItem.mTitle.get().contains("Fragment")) {
+            view.getContext().startActivity(FragmentMainActivity.makeIntent(view.getContext()));
         }
     }
 
