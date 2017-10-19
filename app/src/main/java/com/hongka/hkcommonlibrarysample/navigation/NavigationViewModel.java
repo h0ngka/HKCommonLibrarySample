@@ -45,7 +45,7 @@ public class NavigationViewModel extends BaseObservable {
         navigationItem.mTitle = "onSingleTopClick!";
         mNavigationItem.set(navigationItem);
 
-        Intent intent = MainActivity.makeIntent(view.getContext());
+        Intent intent = NavigationActivity.makeIntent(view.getContext());
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         mContext.startActivity(intent);
     }

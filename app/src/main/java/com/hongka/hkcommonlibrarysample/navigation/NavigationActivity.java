@@ -20,7 +20,6 @@ import com.hongka.hkcommonlibrarysample.utils.ActivityUtils;
  */
 
 public class NavigationActivity extends AppCompatActivity {
-
     private final static String TAG = NavigationActivity.class.getSimpleName();
     private final static String NAVIGATION_VIEWMODEL_TAG = "NAVIGATION_VIEWMODEL_TAG";
     private NavigationViewModel mViewModel;
@@ -33,6 +32,7 @@ public class NavigationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(TAG, "onCreate()");
 
         ActivityNavigationBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_navigation);
         setSupportActionBar(binding.toolbar);
@@ -45,9 +45,33 @@ public class NavigationActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG, "onStart()");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG, "onStop()");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume()");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause()");
+    }
+
+    @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Log.d(TAG, "onNewIntent");
+        Log.e(TAG, "onNewIntent");
     }
 
     @Override
