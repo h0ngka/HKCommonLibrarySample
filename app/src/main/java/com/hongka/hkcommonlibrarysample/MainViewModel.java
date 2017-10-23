@@ -12,6 +12,7 @@ import com.hongka.hkcommonlibrarysample.fragment.FragmentMainActivity;
 import com.hongka.hkcommonlibrarysample.ipc.IpcTestActivity;
 import com.hongka.hkcommonlibrarysample.model.MainItem;
 import com.hongka.hkcommonlibrarysample.navigation.NavigationActivity;
+import com.hongka.hkcommonlibrarysample.viewstub.ViewStubActivity;
 import com.hongka.hkcommonlibrarysample.youtube.YTMainActivity;
 
 import java.util.ArrayList;
@@ -73,6 +74,11 @@ public class MainViewModel extends BaseObservable {
         item8.mThumbnailUrl.set("http://res.thegear.co.kr/images/20161021/20161021082835850311.jpg");
         mainItems.add(item8);
 
+        MainItem item9 = new MainItem();
+        item9.mTitle.set(mContext.getString(R.string.title_view_stub_test));
+        item9.mThumbnailUrl.set("http://www.slist.kr/news/photo/201707/17505_52435_4754.jpg");
+        mainItems.add(item9);
+
         mMainItems.clear();
         mMainItems.addAll(mainItems);
     }
@@ -108,6 +114,9 @@ public class MainViewModel extends BaseObservable {
         }
         else if (mainItem.mTitle.get().contains("Fragment")) {
             view.getContext().startActivity(FragmentMainActivity.makeIntent(view.getContext()));
+        }
+        else if (mainItem.mTitle.get().contains("ViewStub")) {
+            view.getContext().startActivity(ViewStubActivity.makeIntent(view.getContext()));
         }
     }
 
