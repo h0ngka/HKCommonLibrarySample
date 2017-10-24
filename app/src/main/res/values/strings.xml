@@ -14,4 +14,5 @@
     <string name="title_navigation">Navigation</string>
     <string name="title_fragment_test">Fragment 테스트</string>
     <string name="title_view_stub_test">ViewStub 테스트</string>
+    <string name="title_include_merge_test">Include&amp;Merge 테스트</string>
 </resources>

@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.hongka.hkcommonlibrary.exoplayer2.PlayerActivity;
 import com.hongka.hkcommonlibrarysample.exoplayer.ExoMainActivity;
 import com.hongka.hkcommonlibrarysample.fragment.FragmentMainActivity;
+import com.hongka.hkcommonlibrarysample.includemerge.IncludeMergeActivity;
 import com.hongka.hkcommonlibrarysample.ipc.IpcTestActivity;
 import com.hongka.hkcommonlibrarysample.model.MainItem;
 import com.hongka.hkcommonlibrarysample.navigation.NavigationActivity;
@@ -79,6 +80,11 @@ public class MainViewModel extends BaseObservable {
         item9.mThumbnailUrl.set("http://www.slist.kr/news/photo/201707/17505_52435_4754.jpg");
         mainItems.add(item9);
 
+        MainItem item10 = new MainItem();
+        item10.mTitle.set(mContext.getString(R.string.title_include_merge_test));
+        item10.mThumbnailUrl.set("http://zdnet2.cbsistatic.com/hub/i/r/2015/10/29/7c2be59e-5a33-4a50-bf27-9c58152e8a6f/resize/770xauto/cd74a4598643a96110970b01734566fd/android-chrome-thumb.gif");
+        mainItems.add(item10);
+
         mMainItems.clear();
         mMainItems.addAll(mainItems);
     }
@@ -117,6 +123,9 @@ public class MainViewModel extends BaseObservable {
         }
         else if (mainItem.mTitle.get().contains("ViewStub")) {
             view.getContext().startActivity(ViewStubActivity.makeIntent(view.getContext()));
+        }
+        else if (mainItem.mTitle.get().contains("Include&Merge")) {
+            view.getContext().startActivity(IncludeMergeActivity.makeIntent(view.getContext()));
         }
     }
 

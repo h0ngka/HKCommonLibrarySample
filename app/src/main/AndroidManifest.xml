@@ -119,6 +119,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity
+            android:name=".includemerge.IncludeMergeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>
