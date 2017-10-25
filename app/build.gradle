@@ -36,6 +36,7 @@ android {
 
     // 특정 buildTypes 비노출
     // http://gun0912.tistory.com/76
+    // https://developer.android.com/studio/build/build-variants.html?hl=ko
     variantFilter { variant ->
         def buildName = variant.buildType.name;
         def flavorName = variant.getFlavors().get(0).name;
