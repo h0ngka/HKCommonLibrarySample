@@ -13,6 +13,15 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    productFlavors {
+        dev {
+            minSdkVersion 21
+        }
+        prod {
+            minSdkVersion shared.minSdkVersion
+        }
+    }
+
     buildTypes {
         debug {
             minifyEnabled true
@@ -22,6 +31,18 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 특정 buildTypes 비노출
+    // http://gun0912.tistory.com/76
+    variantFilter { variant ->
+        def buildName = variant.buildType.name;
+        def flavorName = variant.getFlavors().get(0).name;
+
+        if (flavorName == 'prod' & buildName == 'release'
+            || flavorName == 'dev' & buildName == 'release') {
+            variant.setIgnore(true);
         }
     }
 
