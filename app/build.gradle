@@ -24,7 +24,7 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             proguardFile 'proguard-debug.pro'
         }
@@ -114,3 +114,5 @@ task sayHelloGroupDescriptionsDependsOn(group:greetings,
 task meetingPeople(group: greetings) << {
     println "I met some people"
 }
+
+apply from: 'static_analysis.gradle'
