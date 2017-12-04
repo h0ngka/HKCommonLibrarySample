@@ -124,6 +124,36 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity
+            android:name=".designpattern.DesignPatternActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".designpattern.decoratorpattern.DecoratorPatternActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".designpattern.strategypattern.StrategyPatternActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".designpattern.observerpattern.ObserverPatternActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".designpattern.singletonpattern.SingletonPatternActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".designpattern.compositepattern.CompositePatternActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>

@@ -15,4 +15,10 @@
     <string name="title_fragment_test">Fragment 테스트</string>
     <string name="title_view_stub_test">ViewStub 테스트</string>
     <string name="title_include_merge_test">Include&amp;Merge 테스트</string>
+    <string name="title_design_pattern">Design Pattern</string>
+    <string name="title_decorator_pattern">Decorator Pattern</string>
+    <string name="title_strategy_pattern">Strategy Pattern</string>
+    <string name="title_observer_pattern">Observer Pattern</string>
+    <string name="title_singleton_pattern">Singleton Pattern</string>
+    <string name="title_composite_pattern">Composite Pattern</string>
 </resources>
