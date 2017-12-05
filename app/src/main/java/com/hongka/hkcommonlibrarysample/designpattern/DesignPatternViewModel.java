@@ -9,6 +9,7 @@ import com.hongka.hkcommonlibrarysample.designpattern.decoratorpattern.Decorator
 import com.hongka.hkcommonlibrarysample.designpattern.observerpattern.ObserverPatternActivity;
 import com.hongka.hkcommonlibrarysample.designpattern.singletonpattern.SingletonPatternActivity;
 import com.hongka.hkcommonlibrarysample.designpattern.strategypattern.StrategyPatternActivity;
+import com.hongka.hkcommonlibrarysample.designpattern.templatemethodpattern.TemplateMethodPatternActivity;
 
 /**
  * Created by jusung.kim@sk.com on 2017/12/01
@@ -34,6 +35,8 @@ public class DesignPatternViewModel extends BaseObservable {
             view.getContext().startActivity(SingletonPatternActivity.makeIntent(view.getContext()));
         } else if (tag.contains("Composite")) {
             view.getContext().startActivity(CompositePatternActivity.makeIntent(view.getContext()));
+        } else if (tag.contains("Template Method")) {
+            view.getContext().startActivity(TemplateMethodPatternActivity.makeIntent(view.getContext()));
         }
     }
 }
