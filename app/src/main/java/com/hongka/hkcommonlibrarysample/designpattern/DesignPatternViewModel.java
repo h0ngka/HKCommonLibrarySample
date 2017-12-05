@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.hongka.hkcommonlibrarysample.designpattern.compositepattern.CompositePatternActivity;
 import com.hongka.hkcommonlibrarysample.designpattern.decoratorpattern.DecoratorPatternActivity;
+import com.hongka.hkcommonlibrarysample.designpattern.factorymethodpattern.FactoryMethodPatternActivity;
 import com.hongka.hkcommonlibrarysample.designpattern.observerpattern.ObserverPatternActivity;
 import com.hongka.hkcommonlibrarysample.designpattern.singletonpattern.SingletonPatternActivity;
 import com.hongka.hkcommonlibrarysample.designpattern.strategypattern.StrategyPatternActivity;
@@ -37,6 +38,8 @@ public class DesignPatternViewModel extends BaseObservable {
             view.getContext().startActivity(CompositePatternActivity.makeIntent(view.getContext()));
         } else if (tag.contains("Template Method")) {
             view.getContext().startActivity(TemplateMethodPatternActivity.makeIntent(view.getContext()));
+        } else if (tag.contains("Factory Method")) {
+            view.getContext().startActivity(FactoryMethodPatternActivity.makeIntent(view.getContext()));
         }
     }
 }

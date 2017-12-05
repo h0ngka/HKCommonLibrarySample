@@ -22,4 +22,5 @@
     <string name="title_singleton_pattern">Singleton Pattern</string>
     <string name="title_composite_pattern">Composite Pattern</string>
     <string name="title_template_method_pattern">Template Method Pattern</string>
+    <string name="title_factory_method_pattern">Factory Method Pattern</string>
 </resources>
