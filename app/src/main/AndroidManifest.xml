@@ -125,52 +125,62 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".designpattern.DesignPatternActivity"
+            android:name=".design_pattern.DesignPatternActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".designpattern.decoratorpattern.DecoratorPatternActivity"
+            android:name=".design_pattern.decoratorpattern.DecoratorPatternActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".designpattern.strategypattern.StrategyPatternActivity"
+            android:name=".design_pattern.strategypattern.StrategyPatternActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".designpattern.observerpattern.ObserverPatternActivity"
+            android:name=".design_pattern.observerpattern.ObserverPatternActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".designpattern.singletonpattern.SingletonPatternActivity"
+            android:name=".design_pattern.singletonpattern.SingletonPatternActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".designpattern.compositepattern.CompositePatternActivity"
+            android:name=".design_pattern.compositepattern.CompositePatternActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".designpattern.templatemethodpattern.TemplateMethodPatternActivity"
+            android:name=".design_pattern.templatemethodpattern.TemplateMethodPatternActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".designpattern.factorymethodpattern.FactoryMethodPatternActivity"
+            android:name=".design_pattern.factorymethodpattern.FactoryMethodPatternActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".designpattern.abstractfactorypattern.AbstractFactoryPatternActivity"
+            android:name=".design_pattern.abstractfactorypattern.AbstractFactoryPatternActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".designpattern.builderpattern.BuilderPatternActivity"
+            android:name=".design_pattern.builderpattern.BuilderPatternActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".data_structure.DataSturectureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name="com.hongka.hkcommonlibrarysample.kotlin.KotlinActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
 

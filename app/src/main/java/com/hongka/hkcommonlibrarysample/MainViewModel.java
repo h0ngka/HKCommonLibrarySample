@@ -7,11 +7,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.hongka.hkcommonlibrary.exoplayer2.PlayerActivity;
-import com.hongka.hkcommonlibrarysample.designpattern.DesignPatternActivity;
+import com.hongka.hkcommonlibrarysample.data_structure.DataSturectureActivity;
+import com.hongka.hkcommonlibrarysample.design_pattern.DesignPatternActivity;
 import com.hongka.hkcommonlibrarysample.exoplayer.ExoMainActivity;
 import com.hongka.hkcommonlibrarysample.fragment.FragmentMainActivity;
 import com.hongka.hkcommonlibrarysample.includemerge.IncludeMergeActivity;
 import com.hongka.hkcommonlibrarysample.ipc.IpcTestActivity;
+import com.hongka.hkcommonlibrarysample.kotlin.KotlinActivity;
 import com.hongka.hkcommonlibrarysample.model.MainItem;
 import com.hongka.hkcommonlibrarysample.navigation.NavigationActivity;
 import com.hongka.hkcommonlibrarysample.viewstub.ViewStubActivity;
@@ -91,6 +93,16 @@ public class MainViewModel extends BaseObservable {
         item11.mThumbnailUrl.set("http://cfile5.uf.tistory.com/image/21582C4153458D290CB90D");
         mainItems.add(item11);
 
+        MainItem item12 = new MainItem();
+        item12.mTitle.set(mContext.getString(R.string.title_data_structure));
+        item12.mThumbnailUrl.set("http://image.zdnet.co.kr/2017/01/15/firstblood_6Vm05HSku.jpg");
+        mainItems.add(item12);
+
+        MainItem item13 = new MainItem();
+        item13.mTitle.set(mContext.getString(R.string.title_kotlin));
+        item13.mThumbnailUrl.set("https://monstertut.com/wp-content/uploads/2017/05/kotlin-tutorial-course-beginner-udemy.jpg");
+        mainItems.add(item13);
+
         mMainItems.clear();
         mMainItems.addAll(mainItems);
     }
@@ -135,6 +147,11 @@ public class MainViewModel extends BaseObservable {
         }
         else if (mainItem.mTitle.get().contains("Design")) {
             view.getContext().startActivity(DesignPatternActivity.makeIntent(view.getContext()));
+        }
+        else if (mainItem.mTitle.get().contains("Data")) {
+            view.getContext().startActivity(DataSturectureActivity.makeIntent(view.getContext()));
+        } else if (mainItem.mTitle.get().contains("kotlin")) {
+            view.getContext().startActivity(KotlinActivity.Companion.makeIntent(view.getContext()));
         }
     }
 

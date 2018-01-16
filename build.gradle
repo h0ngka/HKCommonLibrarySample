@@ -5,6 +5,7 @@ buildscript {
     apply from: "shared-settings.gradle"
     resolveDependencyVersion buildscript:buildscript, strictMode:true
 
+    ext.kotlin_version = '1.1.4-2'
     repositories {
         jcenter()
     }
@@ -14,6 +15,7 @@ buildscript {
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
