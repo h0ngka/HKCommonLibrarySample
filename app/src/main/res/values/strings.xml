@@ -29,4 +29,5 @@
     <string name="title_data_structure">Data Structure</string>
     <string name="title_hash_map">HashMap</string>
     <string name="title_kotlin">kotlin</string>
+    <string name="title_rxjava">RxJava</string>
 </resources>

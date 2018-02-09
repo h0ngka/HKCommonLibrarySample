@@ -16,6 +16,7 @@ import com.hongka.hkcommonlibrarysample.ipc.IpcTestActivity;
 import com.hongka.hkcommonlibrarysample.kotlin.KotlinActivity;
 import com.hongka.hkcommonlibrarysample.model.MainItem;
 import com.hongka.hkcommonlibrarysample.navigation.NavigationActivity;
+import com.hongka.hkcommonlibrarysample.rxjava.RxJavaActivity;
 import com.hongka.hkcommonlibrarysample.viewstub.ViewStubActivity;
 import com.hongka.hkcommonlibrarysample.youtube.YTMainActivity;
 
@@ -103,6 +104,11 @@ public class MainViewModel extends BaseObservable {
         item13.mThumbnailUrl.set("https://monstertut.com/wp-content/uploads/2017/05/kotlin-tutorial-course-beginner-udemy.jpg");
         mainItems.add(item13);
 
+        MainItem item14 = new MainItem();
+        item14.mTitle.set(mContext.getString(R.string.title_rxjava));
+        item14.mThumbnailUrl.set("http://icedtealabs.com/assets/images/android/rxjava.jpg");
+        mainItems.add(item14);
+
         mMainItems.clear();
         mMainItems.addAll(mainItems);
     }
@@ -150,8 +156,12 @@ public class MainViewModel extends BaseObservable {
         }
         else if (mainItem.mTitle.get().contains("Data")) {
             view.getContext().startActivity(DataSturectureActivity.makeIntent(view.getContext()));
-        } else if (mainItem.mTitle.get().contains("kotlin")) {
+        }
+        else if (mainItem.mTitle.get().contains("kotlin")) {
             view.getContext().startActivity(KotlinActivity.Companion.makeIntent(view.getContext()));
+        }
+        else if (mainItem.mTitle.get().contains("RxJava")) {
+            view.getContext().startActivity(RxJavaActivity.makeIntent(view.getContext()));
         }
     }
 
